@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My English Grammar & Progress Journal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>My English Grammar & Progress Journal</h1>
+    <nav>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#grammar-bank">Grammar Bank</a>
+      <a href="#progress">Lesson History</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- DASHBOARD -->
+    <section id="dashboard">
+      <h2>Dashboard</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Current goal</h3>
+          <div class="meta">From B1 to B2/C1 • Australia</div>
+          <p><strong>Main focus:</strong> grammar & expression (speaking + writing).</p>
+          <p><strong>Right now:</strong> tenses, word order, natural expressions.</p>
+        </div>
+        <div class="card">
+          <h3>Quick overview</h3>
+          <ul>
+            <li>Total grammar sheets: <strong>1</strong> (update manually)</li>
+            <li>Total lessons done: <strong>1</strong> (update manually)</li>
+            <li>Last lesson topic: Present Perfect vs Past Simple</li>
+            <li>Next thing to review: for / since / ago</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRAMMAR BANK LIST -->
+    <section id="grammar-bank">
+      <h2>Grammar Bank</h2>
+      <p class="meta">
+        One link = one grammar sheet (separate HTML file in the <code>grammar/</code> folder).
+      </p>
+
+      <div class="card">
+        <h3>Grammar sheets</h3>
+        <ul>
+          <li>
+            <a href="grammar/2025-11-17-present-perfect.html">
+              Present Perfect – experiences (B1–B2)
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROGRESS LIST -->
+    <section id="progress">
+      <h2>Lesson History</h2>
+      <p class="meta">
+        One link = one lesson summary (separate HTML file in the <code>progress/</code> folder).
+      </p>
+
+      <div class="card">
+        <h3>Lessons</h3>
+        <ul>
+          <li>
+            <a href="progress/2025-11-17-lesson-01.html">
+              Lesson #1 – 2025-11-17 – Present Perfect vs Past Simple
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
