@@ -1,136 +1,194 @@
-/* ----- GLOBAL ----- */
+/* --------- RESET DE BASE --------- */
+
 * {
   box-sizing: border-box;
 }
 
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+html, body {
   margin: 0;
   padding: 0;
-  background: #0b1120;
-  color: #e5e7eb;
 }
 
-a {
-  color: #38bdf8;
+/* --------- TYPO + FOND --------- */
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f5f7fb;           /* fond clair bleu/gris */
+  color: #2c3e50;                 /* texte gris foncé */
+  line-height: 1.6;
+}
+
+/* --------- HEADER --------- */
+
+header {
+  background: #ffffff;
+  border-bottom: 1px solid #d6dde8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  padding: 0.75rem 1.5rem 1rem;
+}
+
+header h1 {
+  margin: 0 0 0.5rem;
+  font-size: 1.6rem;
+  color: #1f4e79;                 /* bleu sobre principal */
+}
+
+header nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+header nav a {
   text-decoration: none;
+  color: #1f4e79;
+  font-weight: 500;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: #e4ecf7;
+  font-size: 0.9rem;
+}
+
+header nav a:hover {
+  background: #d1ddf1;
+}
+
+/* --------- LAYOUT GLOBAL --------- */
+
+main {
+  max-width: 900px;
+  margin: 2rem auto 3rem;
+  padding: 0 1rem;
+}
+
+/* Sections principales (Dashboard / Grammar / Progress) */
+
+section {
+  margin-bottom: 2rem;
+}
+
+/* --------- TITRES & TEXTE --------- */
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #1f4e79;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #1f4e79;
+}
+
+p {
+  margin: 0.4rem 0 0.7rem;
+}
+
+.meta {
+  font-size: 0.9rem;
+  color: #6c7a89;
+}
+
+/* Liens */
+
+a {
+  color: #1f4e79;
 }
 
 a:hover {
   text-decoration: underline;
 }
 
-/* ----- LAYOUT ----- */
-header {
-  background: #020617;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  border-bottom: 1px solid #1f2937;
+/* --------- GRILLE & CARTES --------- */
+
+.grid {
+  display: grid;
+  gap: 1.25rem;
 }
 
-header h1 {
-  margin: 0;
-  font-size: 1.15rem;
+/* 2 colonnes sur écran moyen/grand, 1 colonne sur mobile */
+.grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-nav a {
-  color: #9ca3af;
-  margin-left: 1rem;
-  font-size: 0.9rem;
+@media (max-width: 700px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
 }
 
-nav a:hover {
-  color: #e5e7eb;
-}
-
-main {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem 1rem 3rem;
-}
-
-section {
-  margin-bottom: 3rem;
-}
-
-section h2 {
-  margin-bottom: 0.75rem;
-  border-bottom: 1px solid #1f2937;
-  padding-bottom: 0.25rem;
-}
-
-/* ----- CARDS ----- */
 .card {
-  background: #020617;
-  border: 1px solid #1f2937;
-  border-radius: 0.8rem;
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #dde4f0;
+  padding: 1.1rem 1.3rem;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+/* Listes dans les cartes */
+
+.card ul {
+  margin: 0.3rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.card li {
+  margin-bottom: 0.2rem;
+}
+
+/* --------- CODE INLINE (pour le chemin grammar/ progress/) --------- */
+
+code {
+  font-family: "Fira Code", Menlo, Consolas, monospace;
+  background: #edf1fa;
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* --------- BLOCS UTILES POUR LES FUTURES FICHES --------- */
+
+/* Pour tes fiches de grammaire individuelles */
+.grammar-section {
+  background: #ffffff;
+  border-left: 4px solid #1f4e79;
+  border-radius: 8px;
   padding: 1rem 1.25rem;
   margin-bottom: 1rem;
 }
 
-.card h3,
-.card h2 {
-  margin-top: 0;
-  margin-bottom: 0.25rem;
+/* Encadré neutre (note, rappel) */
+.note-box {
+  background: #f3f6ff;
+  border: 1px solid #c7d4f7;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
 }
 
-.meta {
-  font-size: 0.8rem;
-  color: #9ca3af;
-  margin-bottom: 0.5rem;
+/* Encadré pour erreurs fréquentes */
+.error-box {
+  background: #fff7f2;
+  border: 1px solid #f2c5a4;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  font-size: 0.95rem;
 }
 
-.tag {
-  display: inline-block;
-  font-size: 0.75rem;
-  padding: 0.1rem 0.5rem;
-  border-radius: 999px;
-  background: #020617;
-  border: 1px solid #374151;
-  margin-right: 0.25rem;
-  margin-bottom: 0.25rem;
+/* Encadré pour exemples */
+.example-box {
+  background: #f8fafc;
+  border: 1px dashed #c4d0e3;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
 }
 
-.grid {
-  display: grid;
-  gap: 1rem;
-}
-
-@media (min-width: 768px) {
-  .grid-2 {
-    grid-template-columns: 2fr 1fr;
-  }
-}
-
-ul {
-  padding-left: 1.25rem;
-}
-
-.comment {
-  font-style: italic;
-  font-size: 0.9rem;
-  color: #d1d5db;
-}
-
-code {
-  background: #020617;
-  padding: 0.1rem 0.25rem;
-  border-radius: 0.3rem;
-  font-size: 0.9em;
-}
-
-/* ----- BADGE ----- */
-.badge {
-  display: inline-block;
-  padding: 0.15rem 0.5rem;
-  border-radius: 999px;
-  background: #111827;
-  border: 1px solid #1f2937;
-  font-size: 0.75rem;
-  color: #e5e7eb;
+/* Mise en relief exceptionnelle (autre couleur) */
+.highlight {
+  background: #fff3d6;
+  border-radius: 4px;
+  padding: 0.1rem 0.3rem;
 }
