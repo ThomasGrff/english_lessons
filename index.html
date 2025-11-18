@@ -30,8 +30,8 @@
         <div class="card">
           <h3>Quick overview</h3>
           <ul>
-            <li>Total grammar sheets: <strong>2</strong> (update manually)</li>
-            <li>Total lessons done: <strong>2</strong> (update manually)</li>
+            <li>Total grammar sheets: <strong>2</strong> (manual)</li>
+            <li>Total lessons done: <strong>2</strong> (manual)</li>
             <li>Last lesson topic: Present Perfect vs Past Simple</li>
             <li>Next thing to review: for / since / ago</li>
           </ul>
@@ -42,92 +42,93 @@
     <!-- GRAMMAR BANK LIST -->
     <section id="grammar-bank">
       <h2>Grammar Bank</h2>
-      <p class="meta">
-        One link = one grammar sheet (separate HTML file in the <code>grammar/</code> folder).
-      </p>
+      <p class="meta">The list below is automatically generated from the <code>grammar/</code> folder.</p>
 
-      <!-- Fiches de grammaire existantes -->
+      <!-- AUTO-LIST GRAMMAR FILES -->
       <div class="card">
         <h3>Grammar sheets</h3>
-        <ul>
-          <li>
-            <a href="grammar/2025-11-17-present-perfect.html">
-              Present Perfect – experiences (B1–B2)
-            </a>
-          </li>
-          <li>
-            <a href="grammar/present-perfect-vs-past-simple.html">
-              Present Perfect vs Past Simple (B1–B2)
-            </a>
-          </li>
+        <ul id="grammar-list">
+          <li>Loading grammar files...</li>
         </ul>
       </div>
 
       <!-- TEMPLATE FICHE GRAMMATICALE -->
       <div class="card">
         <h3>Templates – Grammar sheets</h3>
-        <p class="meta">
-          Use this template to create a new grammar sheet after each lesson.
-        </p>
+        <p class="meta">Use this template to create a new grammar sheet after each lesson.</p>
         <ul>
-          <li>
-            <a href="grammar/grammar-template.html">
-              Grammar sheet template
-            </a>
-          </li>
+          <li><a href="grammar/grammar-template.html">Grammar sheet template</a></li>
         </ul>
-        <p class="comment">
-          Tip: open the template, save a copy as a new file in the
-          <code>grammar/</code> folder (with the date + topic), then update the
-          content with the new grammar point.
-        </p>
       </div>
     </section>
 
     <!-- PROGRESS LIST -->
     <section id="progress">
       <h2>Lesson History</h2>
-      <p class="meta">
-        One link = one lesson summary (separate HTML file in the <code>progress/</code> folder).
-      </p>
+      <p class="meta">The list below is automatically generated from the <code>progress/</code> folder.</p>
 
-      <!-- Leçons existantes -->
+      <!-- AUTO-LIST PROGRESS FILES -->
       <div class="card">
         <h3>Lessons</h3>
-        <ul>
-          <li>
-            <a href="progress/2025-11-17-lesson-01.html">
-              Lesson #1 – 2025-11-17 – Present Perfect vs Past Simple
-            </a>
-          </li>
-          <li>
-            <a href="progress/2025-11-18-lesson-02.html">
-              Lesson #2 – 2025-11-18 – Present Perfect vs Past Simple
-            </a>
-          </li>
+        <ul id="progress-list">
+          <li>Loading lesson files...</li>
         </ul>
       </div>
 
       <!-- TEMPLATE FICHE DE SUIVI -->
       <div class="card">
         <h3>Templates – Lesson summaries</h3>
-        <p class="meta">
-          Use this template to write a summary at the end of each ChatGPT lesson.
-        </p>
+        <p class="meta">Use this template to write a summary at the end of each ChatGPT lesson.</p>
         <ul>
-          <li>
-            <a href="progress/progress-template.html">
-              Lesson summary template
-            </a>
-          </li>
+          <li><a href="progress/progress-template.html">Lesson summary template</a></li>
         </ul>
-        <p class="comment">
-          Tip: duplicate this file in the <code>progress/</code> folder
-          (date + lesson number), then fill in: what we did, strengths,
-          weak points, next time.
-        </p>
       </div>
     </section>
   </main>
+
+  <!-- ========================== -->
+  <!-- AUTO-GENERATION JAVASCRIPT -->
+  <!-- ========================== -->
+
+  <script>
+    async function loadLinks(folder, elementId) {
+      const user = "ThomasGrff";      // Ton pseudo GitHub
+      const repo = "english_lessons"; // Nom du repo
+
+      const apiUrl = `https://api.github.com/repos/${user}/${repo}/contents/${folder}`;
+
+      try {
+        const res = await fetch(apiUrl);
+        const data = await res.json();
+
+        const ul = document.getElementById(elementId);
+        ul.innerHTML = "";
+
+        data
+          .filter(f => f.name.endsWith(".html") && !f.name.includes("template"))
+          .forEach(f => {
+            const li = document.createElement("li");
+            const link = document.createElement("a");
+
+            link.href = `${folder}/${f.name}`;
+            link.textContent = f.name
+              .replace(".html", "")
+              .replace(/-/g, " ");
+
+            li.appendChild(link);
+            ul.appendChild(li);
+          });
+      } catch (err) {
+        console.error(err);
+        document.getElementById(elementId).innerHTML =
+          "<li>Error loading files</li>";
+      }
+    }
+
+    // Auto-load grammar & progress lists
+    loadLinks("grammar", "grammar-list");
+    loadLinks("progress", "progress-list");
+  </script>
+
 </body>
 </html>
